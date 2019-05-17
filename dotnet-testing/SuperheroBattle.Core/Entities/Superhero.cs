@@ -8,15 +8,22 @@
         public int? AgeAtOrigin { get; set; }
         public int YearOfAppearance { get; set; }
         public bool IsAlien { get; set; }
+        public Planets? PlanetOfOrigin { get; set; }
         public string OriginStory { get; set; }
         public Universes Universe { get; set; }
         public Ability[] Abilities { get; set; }
     }
 
+    public class Ability
+    {
+        public string AbilityID { get; set; }
+        public string Label { get; set; }
+    }
+
     public enum Universes
     {
-        None = 0, 
-        Marvel = 1, 
+        None = 0,
+        Marvel = 1,
         DC = 2,
         Valiant = 3,
         MillarWorld = 4,
@@ -24,9 +31,13 @@
         Other = 6
     }
 
-    public class Ability
+    public enum Planets
     {
-        public string AbilityID { get; set; }
-        public string Lable { get; set; }
+        Earth = 0,
+        Krypton = 1,
+        Hala = 2,
+        Ego = 3,
+        Oa = 4,
+        Titan = 5
     }
 }

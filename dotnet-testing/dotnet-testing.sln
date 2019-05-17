@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperheroBattle.BusinessLog
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperheroBattle.Client.Api", "SuperheroBattle.Client.Api\SuperheroBattle.Client.Api.csproj", "{CFFCC4CE-0546-4B44-ACB6-03A951CA18C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperheroBattle.Core", "SuperheroBattle.Core\SuperheroBattle.Core.csproj", "{BD591826-7A53-4022-AE59-3A924F71D972}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperheroBattle.Core", "SuperheroBattle.Core\SuperheroBattle.Core.csproj", "{BD591826-7A53-4022-AE59-3A924F71D972}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperheroBattle.DataAccessHandlers", "SuperheroBattle.DataAccessHandlers\SuperheroBattle.DataAccessHandlers.csproj", "{50E0FC41-7ADD-4F52-B3BA-1FAE1FE4F0A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{BD591826-7A53-4022-AE59-3A924F71D972}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD591826-7A53-4022-AE59-3A924F71D972}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD591826-7A53-4022-AE59-3A924F71D972}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50E0FC41-7ADD-4F52-B3BA-1FAE1FE4F0A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50E0FC41-7ADD-4F52-B3BA-1FAE1FE4F0A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50E0FC41-7ADD-4F52-B3BA-1FAE1FE4F0A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50E0FC41-7ADD-4F52-B3BA-1FAE1FE4F0A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
