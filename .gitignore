@@ -1,6 +1,4 @@
 *.suo
-*/obj/
-*/bin/
-dotnet-testing/DotNetExampleLibraryTests/obj/
-dotnet-testing/dotnet-testing/obj/
-dotnet-testing/.vs/
+obj/
+bin/
+.vs/
