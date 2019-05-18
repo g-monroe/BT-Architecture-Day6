@@ -1,8 +1,12 @@
-﻿namespace SuperheroBattle.Core
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace SuperheroBattle.Core.Entities
 {
     public class Superhero
     {
         public int SuperheroID { get; set; }
+        [Required]
         public string SuperheroName { get; set; }
         public string SecretIdentity { get; set; }
         public int? AgeAtOrigin { get; set; }
@@ -11,13 +15,12 @@
         public Planets? PlanetOfOrigin { get; set; }
         public string OriginStory { get; set; }
         public Universes Universe { get; set; }
-        public Ability[] Abilities { get; set; }
-    }
+        public ICollection<Ability> Abilities { get; set; }
 
-    public class Ability
-    {
-        public string AbilityID { get; set; }
-        public string Label { get; set; }
+        public Superhero()
+        {
+            Abilities = new HashSet<Ability>();
+        }
     }
 
     public enum Universes
@@ -28,7 +31,8 @@
         Valiant = 3,
         MillarWorld = 4,
         Archie = 5,
-        Other = 6
+        Other = 6,
+        Image = 7
     }
 
     public enum Planets
@@ -38,6 +42,8 @@
         Hala = 2,
         Ego = 3,
         Oa = 4,
-        Titan = 5
+        Titan = 5,
+        Xandar = 6,
+        Viltrumite = 7
     }
 }

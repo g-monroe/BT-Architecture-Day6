@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SuperheroBattle.Core.Entities;
+using SuperheroBattle.DataAccessHandlers;
 
 namespace SuperheroBattle.Client.Api.Controllers
 {
@@ -12,9 +14,12 @@ namespace SuperheroBattle.Client.Api.Controllers
     {
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<Superhero>> Get()
         {
-            return new string[] { "value1", "value2" };
+            //using (var ctx = new SuperheroBattleContext())
+            //{
+            return null;
+            //}
         }
 
         // GET api/values/5
@@ -28,6 +33,22 @@ namespace SuperheroBattle.Client.Api.Controllers
         [HttpPost]
         public void Post([FromBody] string value)
         {
+        }
+
+        [HttpPost]
+        [ActionName("seed")]
+        public ActionResult<string> SeedData()
+        {
+            try
+            {
+                SuperheroBattleInitializer.SeedData();
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+
+            return "Success";
         }
 
         // PUT api/values/5
