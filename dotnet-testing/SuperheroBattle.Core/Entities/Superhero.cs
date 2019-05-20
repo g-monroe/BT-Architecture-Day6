@@ -15,11 +15,11 @@ namespace SuperheroBattle.Core.Entities
         public Planets? PlanetOfOrigin { get; set; }
         public string OriginStory { get; set; }
         public Universes Universe { get; set; }
-        public ICollection<Ability> Abilities { get; set; }
+        public IList<SuperheroAbility> SuperheroAbilities { get; set; }
 
         public Superhero()
         {
-            Abilities = new HashSet<Ability>();
+            SuperheroAbilities = new List<SuperheroAbility>();
         }
     }
 

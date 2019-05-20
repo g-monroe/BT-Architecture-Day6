@@ -6,11 +6,11 @@ namespace SuperheroBattle.Core.Entities
     {
         public int AbilityID { get; set; }
         public string Name { get; set; }
-        public ICollection<Superhero> Superheroes { get; set; }
+        public IList<SuperheroAbility> SuperheroAbilities { get; set; }
 
         public Ability()
         {
-            Superheroes = new HashSet<Superhero>();
+            SuperheroAbilities = new List<SuperheroAbility>();
         }
     }
 }

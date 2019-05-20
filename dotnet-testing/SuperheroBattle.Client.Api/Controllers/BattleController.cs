@@ -12,14 +12,20 @@ namespace SuperheroBattle.Client.Api.Controllers
     [ApiController]
     public class BattleController : ControllerBase
     {
+        private SuperheroBattleContext _dbContext;
+        public BattleController(SuperheroBattleContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<Superhero>> Get()
         {
             //using (var ctx = new SuperheroBattleContext())
-            //{
+            {
             return null;
-            //}
+            }
         }
 
         // GET api/values/5
@@ -35,13 +41,12 @@ namespace SuperheroBattle.Client.Api.Controllers
         {
         }
 
-        [HttpPost]
-        [ActionName("seed")]
+        [HttpPost("seed")]
         public ActionResult<string> SeedData()
         {
             try
             {
-                SuperheroBattleInitializer.SeedData();
+                SuperheroBattleInitializer.SeedData(_dbContext);
             }
             catch (Exception ex)
             {
