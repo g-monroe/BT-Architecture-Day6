@@ -8,6 +8,8 @@ export interface ISuperhero {
     PlanetOfOrigin?: string | null;
     OriginStory?: string;
     Universe?: string;
+    PrimaryColor?: string;
+    SecondaryColor?: string;
     Abilities?: Ability[];
 }
 
