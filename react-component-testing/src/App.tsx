@@ -59,6 +59,24 @@ class App extends React.Component<IAppProps, IAppState> {
     ]
   };
 
+  componentDidMount = async () => {
+    const requestOptions: RequestInit = {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        'Access-Control-Allow-Origin': 'http://localhost:63252/'
+      },
+      mode: "cors"
+    };
+
+    fetch('http://localhost:63252/api/superheroes', requestOptions)
+      .then(response => {
+        return response.json().then(responseJson => {
+          console.log(responseJson);
+        });
+      });
+  }
+
   render() {
     return (
       <div className='App' data-testid='app-component'>
