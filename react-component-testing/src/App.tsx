@@ -99,8 +99,8 @@ class App extends React.Component<IAppProps, IAppState> {
     )
   }
 
-  handleFight = () =>    {
-    this.setState({...this.state, result:'Spider-Man won!'});
+  handleFight = () => {
+    this.setState({ ...this.state, result: 'Spider-Man won!' });
   }
 }
 

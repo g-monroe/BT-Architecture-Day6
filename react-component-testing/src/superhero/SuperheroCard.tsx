@@ -40,13 +40,6 @@ class SuperheroCard extends React.Component<ISuperheroCardProps> {
                     this.props.superhero.Abilities.map(item => (
                         <Tag key={item.AbilityID} closable={false}>{item.Name}</Tag>
                     ))
-                    // <List
-                    //     bordered={false}
-                    //     dataSource={this.props.superhero.Abilities}
-                    //     renderItem={item => (
-                    //         <List.Item key={item.AbilityID} itemType={'*'}>{item.Name}</List.Item>
-                    //     )}>
-                    // </List>
                 }
             </Card>
         );

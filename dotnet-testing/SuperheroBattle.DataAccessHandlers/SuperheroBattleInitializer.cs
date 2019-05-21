@@ -103,8 +103,7 @@ namespace SuperheroBattle.DataAccessHandlers
                         IsAlien = false,
                         Universe = Universes.Marvel,
                         PlanetOfOrigin = Planets.Earth,
-                        AgeAtOrigin = 15,
-                        SuperheroAbilities = new HashSet<Ability>( abilities.Where(a => new int[] { 2,5,6,8 }.Contains(a.AbilityID) ))
+                        AgeAtOrigin = 15
                     },
                     new Superhero
                     {
@@ -113,8 +112,7 @@ namespace SuperheroBattle.DataAccessHandlers
                         YearOfAppearance = 1939,
                         IsAlien = false,
                         Universe = Universes.DC,
-                        PlanetOfOrigin = Planets.Earth,
-                        SuperheroAbilities = new HashSet<Ability>( abilities.Where(a => new int[] { 13 }.Contains(a.AbilityID) ))
+                        PlanetOfOrigin = Planets.Earth
                     },
                     new Superhero
                     {
@@ -132,8 +130,7 @@ namespace SuperheroBattle.DataAccessHandlers
                         YearOfAppearance = 2002,
                         IsAlien = true,
                         Universe = Universes.Image,
-                        PlanetOfOrigin = Planets.Viltrumite,
-                        SuperheroAbilities = new HashSet<Ability>( abilities.Where(a => new int[] { 1,2,4,5,6,10 }.Contains(a.AbilityID) ))
+                        PlanetOfOrigin = Planets.Viltrumite
                     },
                     new Superhero
                     {
@@ -142,8 +139,7 @@ namespace SuperheroBattle.DataAccessHandlers
                         YearOfAppearance = 1963,
                         IsAlien = false,
                         Universe = Universes.Marvel,
-                        PlanetOfOrigin = Planets.Earth,
-                        SuperheroAbilities = new HashSet<Ability>( abilities.Where(a => new int[] { 11,15 }.Contains(a.AbilityID) ))
+                        PlanetOfOrigin = Planets.Earth
                     },
                     new Superhero
                     {
@@ -152,20 +148,35 @@ namespace SuperheroBattle.DataAccessHandlers
                         YearOfAppearance = 1967,
                         IsAlien = true,
                         Universe = Universes.Marvel,
-                        PlanetOfOrigin = Planets.Hala,
-                        SuperheroAbilities = new HashSet<Ability>( abilities.Where(a => new int[] { 1,2,3,4,5,6 }.Contains(a.AbilityID) ))
+                        PlanetOfOrigin = Planets.Hala
                     }
                 };
 
+            var superheroAbilityMapper = new Dictionary<string, int[]>()
+            {
+                { "Spider-Man", new int[] { 2,5,6,8 } },
+                { "Batman", new int[] { 13 } },
+                { "Invincible", new int[] { 1, 2, 4, 5, 6, 10 } },
+                { "Phoenix", new int[] { 11, 15 } },
+                { "Captain Marvel", new int[] { 1, 2, 3, 4, 5, 6 } }
+            };
+
+            var superheroAbilities = superheroAbilityMapper.SelectMany(sam =>
+            {
+                var superhero = superheroes.Single(s => s.SuperheroName == sam.Key);
+                var sa = abilities.Where(a => sam.Value.Contains(a.AbilityID))
+                                                  .Select(a => new SuperheroAbility { AbilityID = a.AbilityID, Ability = a, SuperheroID = superhero.SuperheroID, Superhero = superhero });
+
+                return sa;
+            });
+
             // Loop through the ability of each superhero, and make sure that the ability has a reference
             // back to the superhero. This is to enforce the many-to-many relationship that entity framework
-            // can implicitly support.
-            foreach (var superhero in superheroes)
+            // can implicitly support.            
+            foreach (var sa in superheroAbilities)
             {
-                foreach (var ability in superhero.SuperheroAbilities)
-                {
-                    ability.Superheroes.Add(superhero);
-                }
+                sa.Superhero.SuperheroAbilities.Add(sa);
+                sa.Ability.SuperheroAbilities.Add(sa);
             }
 
             context.Abilities.AddRange(abilities);
