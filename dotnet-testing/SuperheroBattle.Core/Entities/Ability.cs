@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SuperheroBattle.Core.Entities
 {
@@ -6,7 +8,17 @@ namespace SuperheroBattle.Core.Entities
     {
         public int AbilityID { get; set; }
         public string Name { get; set; }
+
+        [JsonIgnore]
         public IList<SuperheroAbility> SuperheroAbilities { get; set; }
+
+        public IEnumerable<string> Superheroes
+        {
+            get
+            {
+                return SuperheroAbilities.Select(sa => sa.Superhero.SuperheroName);
+            }
+        }
 
         public Ability()
         {

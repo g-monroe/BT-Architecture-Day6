@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace SuperheroBattle.Core.Entities
 {
@@ -12,14 +15,47 @@ namespace SuperheroBattle.Core.Entities
         public int? AgeAtOrigin { get; set; }
         public int YearOfAppearance { get; set; }
         public bool IsAlien { get; set; }
+
+        [JsonConverter(typeof(EnumConverter<Planets>))]
         public Planets? PlanetOfOrigin { get; set; }
+
         public string OriginStory { get; set; }
+
+        [JsonConverter(typeof(EnumConverter<Universes>))]
         public Universes Universe { get; set; }
+
+        [JsonIgnore]
         public IList<SuperheroAbility> SuperheroAbilities { get; set; }
+
+        public IEnumerable<string> Abilities
+        {
+            get
+            {
+                return SuperheroAbilities.Select(sa => sa.Ability.Name);
+            }
+        }
 
         public Superhero()
         {
             SuperheroAbilities = new List<SuperheroAbility>();
+        }
+    }
+
+    internal class EnumConverter<TEnum> : JsonConverter
+    {
+        public override bool CanConvert(Type objectType)
+        {
+            return objectType.IsEnum;
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            return Enum.Parse(typeof(TEnum), reader.Value.ToString());
+        }
+
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteValue(((TEnum)value).ToString());
         }
     }
 

@@ -11,6 +11,7 @@ namespace SuperheroBattle.DataAccessHandlers
 
         public SuperheroBattleContext(DbContextOptions options) : base(options)
         {
+            
         }
 
         public DbSet<Superhero> Superheroes { get; set; }

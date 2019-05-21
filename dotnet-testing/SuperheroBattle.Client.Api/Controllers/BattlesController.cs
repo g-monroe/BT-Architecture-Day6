@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SuperheroBattle.Core.Entities;
 using SuperheroBattle.DataAccessHandlers;
 
@@ -10,10 +11,10 @@ namespace SuperheroBattle.Client.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BattleController : ControllerBase
+    public class BattlesController : ControllerBase
     {
         private SuperheroBattleContext _dbContext;
-        public BattleController(SuperheroBattleContext dbContext)
+        public BattlesController(SuperheroBattleContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -22,10 +23,9 @@ namespace SuperheroBattle.Client.Api.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Superhero>> Get()
         {
-            //using (var ctx = new SuperheroBattleContext())
-            {
-            return null;
-            }
+            return _dbContext.Superheroes
+                             .Include(s => s.SuperheroAbilities)
+                             .ThenInclude(sa => sa.Ability).ToList();
         }
 
         // GET api/values/5
@@ -35,14 +35,8 @@ namespace SuperheroBattle.Client.Api.Controllers
             return "value";
         }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
         [HttpPost("seed")]
-        public ActionResult<string> SeedData()
+        public ActionResult<string> SeedInitialEntities()
         {
             try
             {
