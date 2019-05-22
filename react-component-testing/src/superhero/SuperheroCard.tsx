@@ -7,13 +7,6 @@ interface ISuperheroCardProps {
     superhero: ISuperhero;
 }
 class SuperheroCard extends React.Component<ISuperheroCardProps> {
-    defaultProps = {
-        supehero: {
-            SuperheroName: '',
-            SecretIdentity: ''
-        }
-    }
-
     render() {
         const headerStyle:CSSProperties = {
             backgroundColor: this.props.superhero.primaryColor,
@@ -37,8 +30,8 @@ class SuperheroCard extends React.Component<ISuperheroCardProps> {
                 <Title level={4}>Abilities:</Title>
                 {
                     this.props.superhero.abilities &&
-                    this.props.superhero.abilities.map(item => (
-                        <Tag key={item.abilityID} closable={false}>{item.name}</Tag>
+                    this.props.superhero.abilities.map((item, index) => (
+                        <Tag key={index} closable={false}>{item}</Tag>
                     ))
                 }
             </Card>

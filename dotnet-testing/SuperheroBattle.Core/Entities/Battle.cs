@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SuperheroBattle.Core.Entities
+﻿namespace SuperheroBattle.Core.Entities
 {
     public class Battle
     {

@@ -61,7 +61,15 @@ namespace SuperheroBattle.Client.Api.Controllers
                                             .ToListAsync();
 
             int firstSuperheroScore = superheroes[0].SuperheroAbilities.Sum(a => a.Ability.StrengthLevel) + superheroes[0].AbilityModifier;
-            int secondSuperheroScore = superheroes[1].SuperheroAbilities.Sum(a => a.Ability.StrengthLevel) + superheroes[1].AbilityModifier;
+            int secondSuperheroScore;
+            if (superheroes.Count > 1)
+            {
+                 secondSuperheroScore = superheroes[1].SuperheroAbilities.Sum(a => a.Ability.StrengthLevel) + superheroes[1].AbilityModifier;
+            }
+            else
+            {
+                secondSuperheroScore = firstSuperheroScore;
+            }
 
             if (firstSuperheroScore > secondSuperheroScore)
             {

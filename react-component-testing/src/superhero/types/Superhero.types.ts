@@ -1,5 +1,5 @@
 export interface ISuperhero {
-    superheroID?: number;
+    superheroID: number;
     superheroName: string;
     secretIdentity?: string;
     ageAtOrigin?: number | null;

@@ -3,6 +3,7 @@ import './App.css';
 import { Row, Col, Button } from 'antd';
 import Title from 'antd/lib/typography/Title';
 import { ISuperhero } from './superhero/types/Superhero.types';
+import { IBattle } from './superhero/types/Battle.types';
 import SuperheroCard from './superhero/SuperheroCard';
 import SuperheroPicker from './superhero/SuperheroPicker';
 
@@ -109,7 +110,7 @@ class App extends React.Component<IAppProps, IAppState> {
         {
           this.state.defender &&
           this.state.attacker &&
-          <Button type='danger' block onClick={() => this.handleFight()}>FIGHT!</Button>
+          <Button type='danger' block onClick={async () => await this.handleFight()}>FIGHT!</Button>
         }
 
         {
@@ -121,7 +122,40 @@ class App extends React.Component<IAppProps, IAppState> {
   }
 
   handleFight = () => {
-    this.setState({ ...this.state, result: 'Spider-Man won!' });
+    if (this.state.defender && this.state.attacker && this.state.superheroOptions) {
+      const battle: IBattle = {
+        attackerID: this.state.attacker!.superheroID,
+        defenderID: this.state.defender!.superheroID,
+        hasBattled: false
+      }
+
+      const requestOptions: RequestInit = {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          'Access-Control-Allow-Origin': '*'
+        },
+        mode: "cors",
+        body: JSON.stringify(battle)
+      };
+
+      fetch('http://localhost:63252/api/battles/fight', requestOptions)
+        .then(response => {
+          return response.json().then(responseJson => {
+            let resultText: string = "Fighting...";
+            if (!responseJson.winnerID) {
+              resultText = "Draw";
+            }
+            else {
+              const winner = this.state.superheroOptions!.find(s => s.superheroID === responseJson.winnerID)
+              if (winner) {
+                resultText = `${winner.superheroName} is the winner!`;
+              }
+            }
+            this.setState({ ...this.state, result: resultText }); 
+          });
+        });
+    }
   }
 }
 
