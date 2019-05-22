@@ -52,6 +52,7 @@ namespace SuperheroBattle.Client.Api
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("MyPolicy");
             app.UseMvc();
         }
     }

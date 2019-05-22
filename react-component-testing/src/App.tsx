@@ -64,7 +64,7 @@ class App extends React.Component<IAppProps, IAppState> {
       method: 'GET',
       headers: {
         "Content-Type": "application/json",
-        'Access-Control-Allow-Origin': 'http://localhost:63252/'
+        'Access-Control-Allow-Origin': '*'
       },
       mode: "cors"
     };
