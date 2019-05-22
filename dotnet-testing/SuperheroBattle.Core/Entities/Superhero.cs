@@ -23,6 +23,9 @@ namespace SuperheroBattle.Core.Entities
 
         [JsonConverter(typeof(EnumConverter<Universes>))]
         public Universes Universe { get; set; }
+        
+        [JsonIgnore]
+        public int AbilityModifier { get; set; }
 
         [JsonIgnore]
         public IList<SuperheroAbility> SuperheroAbilities { get; set; }

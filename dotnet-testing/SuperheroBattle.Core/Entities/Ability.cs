@@ -9,6 +9,8 @@ namespace SuperheroBattle.Core.Entities
         public int AbilityID { get; set; }
         public string Name { get; set; }
 
+        public int StrengthLevel { get; set; }
+
         [JsonIgnore]
         public IList<SuperheroAbility> SuperheroAbilities { get; set; }
 
