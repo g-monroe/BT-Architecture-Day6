@@ -14,7 +14,7 @@ class SuperheroPicker extends React.Component<ISuperheroPickerProps> {
             <Select defaultValue={`Pick the ${this.props.title}...`} style={{ width: '100%' }} onChange={(newValue: string) => this.onSuperheroChanged(newValue)}>
                 {
                     this.props.superheroOptions.map((item, index) =>
-                        <Select.Option key={index} value={item.SuperheroName}>{item.SuperheroName}</Select.Option>
+                        <Select.Option key={index} value={item.superheroName}>{item.superheroName}</Select.Option>
                     )
                 }
             </Select>
@@ -23,7 +23,7 @@ class SuperheroPicker extends React.Component<ISuperheroPickerProps> {
 
     onSuperheroChanged = (newValue: string): void => {
         let selectedSuperhero: ISuperhero | undefined;
-        selectedSuperhero = this.props.superheroOptions.find(item => item.SuperheroName === newValue);
+        selectedSuperhero = this.props.superheroOptions.find(item => item.superheroName === newValue);
         if (selectedSuperhero) {
             this.props.onChange(selectedSuperhero);
         }

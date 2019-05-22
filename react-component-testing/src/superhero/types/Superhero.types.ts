@@ -1,20 +1,20 @@
 export interface ISuperhero {
-    SuperheroID?: number;
-    SuperheroName: string;
-    SecretIdentity?: string;
-    AgeAtOrigin?: number | null;
-    YearOfAppearance?: number;
-    IsAlien?: boolean;
-    PlanetOfOrigin?: string | null;
-    OriginStory?: string;
-    Universe?: string;
-    PrimaryColor?: string;
-    SecondaryColor?: string;
-    Abilities?: Ability[];
+    superheroID?: number;
+    superheroName: string;
+    secretIdentity?: string;
+    ageAtOrigin?: number | null;
+    yearOfAppearance?: number;
+    isAlien?: boolean;
+    planetOfOrigin?: string | null;
+    originStory?: string;
+    universe?: string;
+    primaryColor?: string;
+    secondaryColor?: string;
+    abilities?: Ability[];
 }
 
 interface Ability {
-    AbilityID: number;
-    Name: string;
+    abilityID: number;
+    name: string;
 }
 
