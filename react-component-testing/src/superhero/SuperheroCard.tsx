@@ -16,7 +16,7 @@ class SuperheroCard extends React.Component<ISuperheroCardProps> {
         }
 
         return (
-            <Card title={this.props.superhero.superheroName} bordered={true}  headStyle={headerStyle} data-testid="defender-card">
+            <Card title={this.props.superhero.superheroName} bordered={true}  headStyle={headerStyle} data-testid="superhero-card">
                 <p>Secret Identity: {this.props.superhero.secretIdentity}</p>
                 <p>First Appearance: {this.props.superhero.yearOfAppearance}</p>
                 <p>Age at Origin: {this.props.superhero.ageAtOrigin}</p>

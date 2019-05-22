@@ -10,8 +10,9 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 describe('SupheroCard Component Tests', () => {
     let superheroCard: ReactElement;
     const defaultSuperheroProp = {
-        SuperheroName: '',
-        SecretIdentity: ''
+        superheroID: 0,
+        superheroName: 'spider-man',
+        secretIdentity: ''
     };
 
     beforeEach(() => {
@@ -19,8 +20,8 @@ describe('SupheroCard Component Tests', () => {
     })
 
     it('displays correct superhero name', () => {
-        const wrapper = setupWrapper(superheroCard, { SuperheroName: 'spider-man' });
-        const defenderCard = findElementByTestId(wrapper, 'defender-card');
+        const wrapper = setupWrapper(superheroCard);
+        const defenderCard = findElementByTestId(wrapper, 'superhero-card');
         expect(defenderCard.prop('title')).toBe('spider-man');
     });
 });
