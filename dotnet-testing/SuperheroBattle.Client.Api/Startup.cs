@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using SuperheroBattle.BusinessLogic.Managers;
 using SuperheroBattle.Core.Managers;
+using SuperheroBattle.DataAccessHandlers.Handlers;
 
 namespace SuperheroBattle.Client.Api
 {
@@ -41,7 +42,8 @@ namespace SuperheroBattle.Client.Api
             });
 
             // Add managers, engines, handlers here
-            services.AddSingleton(typeof(IBattleManager), typeof(BattleManager));
+            services.AddTransient(typeof(IBattleManager), typeof(BattleManager));
+            services.AddTransient(typeof(ISuperheroHandler), typeof(SuperheroHandler));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

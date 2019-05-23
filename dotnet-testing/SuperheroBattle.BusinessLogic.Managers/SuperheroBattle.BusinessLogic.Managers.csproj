@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -6,7 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FakeItEasy" Version="5.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SuperheroBattle.Core\SuperheroBattle.Core.csproj" />
+    <ProjectReference Include="..\SuperheroBattle.DataAccessHandlers\SuperheroBattle.DataAccessHandlers.csproj" />
   </ItemGroup>
 
 </Project>
