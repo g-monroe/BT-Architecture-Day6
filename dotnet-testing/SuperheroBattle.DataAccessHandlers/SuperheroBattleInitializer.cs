@@ -48,7 +48,7 @@ namespace SuperheroBattle.DataAccessHandlers
                     },
                     new Ability
                     {
-                        Name = "Superhuman Agility",
+                        Name = "Superhuman Agility",                        ,
                         StrengthLevel = 50
                     },
                     new Ability

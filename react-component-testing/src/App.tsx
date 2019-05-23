@@ -1,26 +1,21 @@
-import React from "react";
-import "./App.css";
-import { Row, Col, Button } from "antd";
-import Title from "antd/lib/typography/Title";
-import { ISuperhero } from "./superhero/types/Superhero.types";
-import { IBattle } from "./superhero/types/Battle.types";
-import SuperheroCard from "./superhero/SuperheroCard";
-import SuperheroPicker from "./superhero/SuperheroPicker";
+import React from 'react';
+import './App.css';
+import { Row, Col, Button } from 'antd';
+import Title from 'antd/lib/typography/Title';
+import { ISuperhero } from './superhero/types/Superhero.types';
+import { IBattle } from './superhero/types/Battle.types';
+import SuperheroCard from './superhero/SuperheroCard';
+import SuperheroPicker from './superhero/SuperheroPicker';
 
 interface IAppState {
   superheroOptions?: ISuperhero[];
   defender?: ISuperhero;
   attacker?: ISuperhero;
   result?: string;
-  battleSummary?: IBattleSummary;
 }
 
-interface IBattleSummary {
-  attacker: string;
-  defender: string;
+interface IAppProps {
 }
-
-interface IAppProps {}
 
 class App extends React.Component<IAppProps, IAppState> {
   state: IAppState = {
@@ -67,143 +62,101 @@ class App extends React.Component<IAppProps, IAppState> {
 
   componentDidMount = async () => {
     const requestOptions: RequestInit = {
-      method: "GET",
+      method: 'GET',
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
+        'Access-Control-Allow-Origin': '*'
       },
       mode: "cors"
     };
 
-    fetch("http://localhost:63252/api/superheroes", requestOptions).then(
-      response => {
+    fetch('http://localhost:63252/api/superheroes', requestOptions)
+      .then(response => {
         return response.json().then(responseJson => {
           this.setState({ ...this.state, superheroOptions: responseJson });
         });
-      }
-    );
-  };
+      });
+  }
 
   render() {
     return (
-      <div className="App" data-testid="app-component">
-        {this.state.superheroOptions && (
+      <div className='App' data-testid='app-component'>
+        {
+          this.state.superheroOptions &&
           <Row>
             <Col span={10}>
-              <SuperheroPicker
-                superheroOptions={this.state.superheroOptions}
-                title="attacker"
-                onChange={newHero =>
-                  this.setState({ ...this.state, defender: newHero })
-                }
-              />
+              <SuperheroPicker superheroOptions={this.state.superheroOptions} title='attacker' onChange={newHero => this.setState({ ...this.state, defender: newHero })} />
             </Col>
             <Col span={4} />
-            <Col span={10}>
-              <SuperheroPicker
-                superheroOptions={this.state.superheroOptions}
-                title="defender"
-                onChange={newHero =>
-                  this.setState({ ...this.state, attacker: newHero })
-                }
-              />
+            <Col span={10}          >
+              <SuperheroPicker superheroOptions={this.state.superheroOptions} title='defender' onChange={newHero => this.setState({ ...this.state, attacker: newHero })} />
             </Col>
           </Row>
-        )}
+        }
         <Row>
           <Col span={10}>
-            {this.state.defender && (
-              <SuperheroCard superhero={this.state.defender} />
-            )}
+            {this.state.defender && <SuperheroCard superhero={this.state.defender} />}
           </Col>
 
           <Col span={4}>
-            <Title
-              level={1}
-              style={{ alignContent: "center", verticalAlign: "center" }}
-            >
-              VS
-            </Title>
+            <Title level={1} style={{ alignContent: 'center', verticalAlign: 'center' }}>VS</Title>
           </Col>
 
           <Col span={10}>
-            {this.state.attacker && (
-              <SuperheroCard superhero={this.state.attacker} />
-            )}
+            {this.state.attacker && <SuperheroCard superhero={this.state.attacker} />}
           </Col>
         </Row>
 
-        {this.state.defender && this.state.attacker && (
-          <Button
-            type="danger"
-            block
-            onClick={async () => await this.handleFight()}
-          >
-            FIGHT!
-          </Button>
-        )}
+        {
+          this.state.defender &&
+          this.state.attacker &&
+          <Button type='danger' block onClick={async () => await this.handleFight()}>FIGHT!</Button>
+        }
 
-        {this.state.result && <Title level={1}>{this.state.result}</Title>}
-        {this.state.battleSummary && (
-          <Row data-testid="battle-summary-row">
-            <Col span={12}>
-              <Title level={2} data-testid="battle-result-summary-attacker">
-                {this.state.battleSummary!.attacker}
-              </Title>
-            </Col>
-            <Col span={12}>
-              <Title level={2} data-testid="battle-result-summary-defender">
-                {this.state.battleSummary!.defender}
-              </Title>
-            </Col>
-          </Row>
-        )}
+        {
+          this.state.result &&
+          <Title level={1}>{this.state.result}</Title>
+        }
       </div>
-    );
+    )
   }
 
   handleFight = () => {
-    if (
-      this.state.defender &&
-      this.state.attacker &&
-      this.state.superheroOptions
-    ) {
+    if (this.state.defender && this.state.attacker && this.state.superheroOptions) {
       const battle: IBattle = {
         attackerID: this.state.attacker!.superheroID,
         defenderID: this.state.defender!.superheroID,
         hasBattled: false
-      };
+      }
 
       const requestOptions: RequestInit = {
-        method: "POST",
+        method: 'POST',
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
+          'Access-Control-Allow-Origin': '*'
         },
         mode: "cors",
         body: JSON.stringify(battle)
       };
 
-      fetch("http://localhost:63252/api/battles/fight", requestOptions).then(
-        response => {
+      fetch('http://localhost:63252/api/battles/fight', requestOptions)
+        .then(response => {
           return response.json().then(responseJson => {
             let resultText: string = "Fighting...";
             if (!responseJson.winnerID) {
               resultText = "Draw";
-            } else {
-              const winner = this.state.superheroOptions!.find(
-                s => s.superheroID === responseJson.winnerID
-              );
+            }
+            else {
+              const winner = this.state.superheroOptions!.find(s => s.superheroID === responseJson.winnerID)
               if (winner) {
                 resultText = `${winner.superheroName} is the winner!`;
               }
             }
-            this.setState({ ...this.state, result: resultText });
+            this.setState({ ...this.state, result: resultText }); 
           });
-        }
-      );
+        });
     }
-  };
+  }
 }
 
 export default App;
