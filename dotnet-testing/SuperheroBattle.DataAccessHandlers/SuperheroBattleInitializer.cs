@@ -13,63 +13,78 @@ namespace SuperheroBattle.DataAccessHandlers
                 {
                     new Ability
                     {
-                        Name = "Fly"
+                        Name = "Fly",
+                        StrengthLevel = 12
                     },
                     new Ability
                     {
-                        Name = "Superhuman Strength"
+                        Name = "Superhuman Strength",
+                        StrengthLevel = 70
                     },
                     new Ability
                     {
-                        Name = "Energy Absorption"
+                        Name = "Energy Absorption",
+                        StrengthLevel = 30
                     },
                     new Ability
                     {
-                        Name = "Superhuman Speed"
+                        Name = "Superhuman Speed",
+                        StrengthLevel = 66
                     },
                     new Ability
                     {
-                        Name = "Superhuman Stamina"
+                        Name = "Superhuman Stamina",
+                        StrengthLevel = 75
                     },
                     new Ability
                     {
-                        Name = "Superhuman Durability"
+                        Name = "Superhuman Durability",
+                        StrengthLevel = 80
                     },
                     new Ability
                     {
-                        Name = "Photographic Memory"
+                        Name = "Photographic Memory",
+                        StrengthLevel = 20
                     },
                     new Ability
                     {
-                        Name = "Superhuman Agility"
+                        Name = "Superhuman Agility",                        ,
+                        StrengthLevel = 50
                     },
                     new Ability
                     {
-                        Name = "Speed Reading"
+                        Name = "Speed Reading",
+                        StrengthLevel = 2
                     },
                     new Ability
                     {
-                        Name = "Regenerative Healing"
+                        Name = "Regenerative Healing",
+                        StrengthLevel = 90
                     },
                     new Ability
                     {
-                        Name = "Telepathy"
+                        Name = "Telepathy",
+                        StrengthLevel = 33
                     },
                     new Ability
                     {
-                        Name = "Terrible Singing"
+                        Name = "Terrible Singing",
+                        StrengthLevel = 0
                     },
                     new Ability
                     {
-                        Name = "Object/Money"
+                        Name = "Object/Money",
+                        StrengthLevel = 5
                     },
                     new Ability
                     {
-                        Name = "CSI Zoom Focus"
+                        Name = "CSI Zoom Focus",
+                        StrengthLevel = 16
                     },
                     new Ability
                     {
-                        Name = "Telekinesis"
+                        Name = "Telekinesis",
+                        StrengthLevel = 88
                     }
                 };
 
@@ -83,7 +98,8 @@ namespace SuperheroBattle.DataAccessHandlers
                         IsAlien = false,
                         Universe = Universes.Marvel,
                         PlanetOfOrigin = Planets.Earth,
-                        AgeAtOrigin = 15
+                        AgeAtOrigin = 15,
+                        AbilityModifier = 20
                     },
                     new Superhero
                     {
@@ -92,7 +108,8 @@ namespace SuperheroBattle.DataAccessHandlers
                         YearOfAppearance = 1939,
                         IsAlien = false,
                         Universe = Universes.DC,
-                        PlanetOfOrigin = Planets.Earth
+                        PlanetOfOrigin = Planets.Earth,
+                        AbilityModifier = 0
                     },
                     new Superhero
                     {
@@ -101,7 +118,8 @@ namespace SuperheroBattle.DataAccessHandlers
                         YearOfAppearance = 2008,
                         IsAlien = false,
                         Universe = Universes.MillarWorld,
-                        PlanetOfOrigin = Planets.Earth
+                        PlanetOfOrigin = Planets.Earth,
+                        AbilityModifier = -15
                     },
                     new Superhero
                     {
@@ -110,7 +128,8 @@ namespace SuperheroBattle.DataAccessHandlers
                         YearOfAppearance = 2002,
                         IsAlien = true,
                         Universe = Universes.Image,
-                        PlanetOfOrigin = Planets.Viltrumite
+                        PlanetOfOrigin = Planets.Viltrumite,
+                        AbilityModifier = 50
                     },
                     new Superhero
                     {
@@ -119,7 +138,8 @@ namespace SuperheroBattle.DataAccessHandlers
                         YearOfAppearance = 1963,
                         IsAlien = false,
                         Universe = Universes.Marvel,
-                        PlanetOfOrigin = Planets.Earth
+                        PlanetOfOrigin = Planets.Earth,
+                        AbilityModifier = 70
                     },
                     new Superhero
                     {
@@ -128,7 +148,8 @@ namespace SuperheroBattle.DataAccessHandlers
                         YearOfAppearance = 1967,
                         IsAlien = true,
                         Universe = Universes.Marvel,
-                        PlanetOfOrigin = Planets.Hala
+                        PlanetOfOrigin = Planets.Hala,
+                        AbilityModifier = 30
                     }
                 };
 

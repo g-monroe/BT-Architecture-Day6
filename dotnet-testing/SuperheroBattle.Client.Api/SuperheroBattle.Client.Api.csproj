@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SuperheroBattle.BusinessLogic.Managers\SuperheroBattle.BusinessLogic.Managers.csproj" />
     <ProjectReference Include="..\SuperheroBattle.Core\SuperheroBattle.Core.csproj" />
     <ProjectReference Include="..\SuperheroBattle.DataAccessHandlers\SuperheroBattle.DataAccessHandlers.csproj" />
   </ItemGroup>

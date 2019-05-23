@@ -2,7 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <RootNamespace>dotnet_testing</RootNamespace>
+    <RootNamespace>SuperheroBattle.BusinessLogic.Managers</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SuperheroBattle.Core\SuperheroBattle.Core.csproj" />
+  </ItemGroup>
 
 </Project>

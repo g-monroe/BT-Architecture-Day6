@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using SuperheroBattle.BusinessLogic.Managers;
+using SuperheroBattle.Core.Managers;
 
 namespace SuperheroBattle.Client.Api
 {
@@ -37,6 +39,9 @@ namespace SuperheroBattle.Client.Api
                 options.AddPolicy("MyPolicy",
                                   builder =>builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
+
+            // Add managers, engines, handlers here
+            services.AddSingleton(typeof(IBattleManager), typeof(BattleManager));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

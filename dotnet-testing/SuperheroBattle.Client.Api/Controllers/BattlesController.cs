@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SuperheroBattle.Core.Entities;
+using SuperheroBattle.Core.Managers;
 using SuperheroBattle.DataAccessHandlers;
 
 namespace SuperheroBattle.Client.Api.Controllers
@@ -14,9 +15,11 @@ namespace SuperheroBattle.Client.Api.Controllers
     public class BattlesController : ControllerBase
     {
         private SuperheroBattleContext _dbContext;
-        public BattlesController(SuperheroBattleContext dbContext)
+        private IBattleManager _battleManager;
+        public BattlesController(SuperheroBattleContext dbContext, IBattleManager battleManager)
         {
             _dbContext = dbContext;
+            _battleManager = battleManager;
         }
 
         // GET api/values
