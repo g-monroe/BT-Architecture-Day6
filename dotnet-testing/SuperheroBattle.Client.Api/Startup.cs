@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using SuperheroBattle.BusinessLogic.Managers;
 using SuperheroBattle.Core.Managers;
+using SuperheroBattle.DataAccessHandlers.Handlers;
 
 namespace SuperheroBattle.Client.Api
 {
@@ -37,11 +38,12 @@ namespace SuperheroBattle.Client.Api
             services.AddCors(options =>
             {
                 options.AddPolicy("MyPolicy",
-                                  builder =>builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+                                  builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
 
             // Add managers, engines, handlers here
-            services.AddSingleton(typeof(IBattleManager), typeof(BattleManager));
+            services.AddTransient<IBattleManager, BattleManager>();
+            services.AddTransient<ISuperheroHandler, SuperheroHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

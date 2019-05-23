@@ -21,7 +21,7 @@ namespace SuperheroBattle.Client.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Superheroes",
+                name: "SuperheroesNew",
                 columns: table => new
                 {
                     SuperheroID = table.Column<int>(nullable: false)

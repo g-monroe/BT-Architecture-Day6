@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { shallow, ShallowWrapper, mount, ReactWrapper } from 'enzyme';
 
 export const setupWrapper = (component: ReactElement, props: any = {}, state: any = {}): ShallowWrapper => {
   const wrapper = shallow(component, props);

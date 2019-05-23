@@ -56,39 +56,7 @@ namespace SuperheroBattle.Client.Api.Controllers
         [HttpPost("fight")]
         public async Task<ActionResult<Battle>> Fight([FromBody]Battle battle)
         {
-            var superheroes =
-                await _dbContext.Superheroes.Where(s => (s.SuperheroID == battle.AttackerID) ||
-                                                        (s.SuperheroID == battle.DefenderID))
-                                            .Include(s => s.SuperheroAbilities)
-                                            .ThenInclude(sa => sa.Ability)
-                                            .ToListAsync();
-
-            int firstSuperheroScore = superheroes[0].SuperheroAbilities.Sum(a => a.Ability.StrengthLevel) + superheroes[0].AbilityModifier;
-            int secondSuperheroScore;
-            if (superheroes.Count > 1)
-            {
-                 secondSuperheroScore = superheroes[1].SuperheroAbilities.Sum(a => a.Ability.StrengthLevel) + superheroes[1].AbilityModifier;
-            }
-            else
-            {
-                secondSuperheroScore = firstSuperheroScore;
-            }
-
-            if (firstSuperheroScore > secondSuperheroScore)
-            {
-                battle.WinnerID = superheroes[0].SuperheroID;
-            }
-            else if (firstSuperheroScore < secondSuperheroScore)
-            {
-                battle.WinnerID = superheroes[1].SuperheroID;
-            }
-            else
-            {
-                // Returning null indicates a draw.
-                battle.WinnerID = null;
-            }
-
-            return battle;
+            return await _battleManager.Fight(battle);
         }
 
         // PUT api/values/5

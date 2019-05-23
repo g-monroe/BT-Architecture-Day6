@@ -16,5 +16,6 @@ export interface ISuperhero {
 interface Ability {
     abilityID: number;
     name: string;
+    strengthLevel: number;
 }
 

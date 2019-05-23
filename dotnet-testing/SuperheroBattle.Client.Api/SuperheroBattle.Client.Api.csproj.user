@@ -11,5 +11,6 @@
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_DbContextTypeFullName>SuperheroBattle.DataAccessHandlers.SuperheroBattleContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
+    <ShowAllFiles>false</ShowAllFiles>
   </PropertyGroup>
 </Project>

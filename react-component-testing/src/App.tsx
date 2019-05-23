@@ -6,12 +6,19 @@ import { ISuperhero } from './superhero/types/Superhero.types';
 import { IBattle } from './superhero/types/Battle.types';
 import SuperheroCard from './superhero/SuperheroCard';
 import SuperheroPicker from './superhero/SuperheroPicker';
+import { timeout } from 'q';
 
 interface IAppState {
   superheroOptions?: ISuperhero[];
   defender?: ISuperhero;
   attacker?: ISuperhero;
   result?: string;
+  battleSummary?: IBattleSummary;
+}
+
+interface IBattleSummary {
+  attacker: string;
+  defender: string;
 }
 
 interface IAppProps {
@@ -117,6 +124,20 @@ class App extends React.Component<IAppProps, IAppState> {
           this.state.result &&
           <Title level={1}>{this.state.result}</Title>
         }
+
+
+        {
+          this.state.battleSummary &&
+          <Row data-testid='battle-summary-row'>
+            <Col span={12}>
+              <Title level={2} data-testid='battle-result-summary-attacker'>{this.state.battleSummary.attacker}</Title>
+            </Col>
+            <Col span={12}>
+              <Title level={2} data-testid='battle-result-summary-defender'>{this.state.battleSummary.defender}</Title>
+            </Col>
+          </Row>
+        }
+
       </div>
     )
   }
@@ -152,7 +173,7 @@ class App extends React.Component<IAppProps, IAppState> {
                 resultText = `${winner.superheroName} is the winner!`;
               }
             }
-            this.setState({ ...this.state, result: resultText }); 
+            this.setState({ ...this.state, result: resultText });
           });
         });
     }
