@@ -9,11 +9,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FakeItEasy" Version="5.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SuperheroBattle.BusinessLogic.Engines\SuperheroBattle.BusinessLogic.Engines.csproj" />
     <ProjectReference Include="..\SuperheroBattle.BusinessLogic.Managers\SuperheroBattle.BusinessLogic.Managers.csproj" />
     <ProjectReference Include="..\SuperheroBattle.Core\SuperheroBattle.Core.csproj" />
     <ProjectReference Include="..\SuperheroBattle.DataAccessHandlers\SuperheroBattle.DataAccessHandlers.csproj" />

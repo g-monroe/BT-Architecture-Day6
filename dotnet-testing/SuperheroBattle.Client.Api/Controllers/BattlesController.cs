@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SuperheroBattle.BusinessLogic.Engines;
 using SuperheroBattle.Core.Entities;
 using SuperheroBattle.Core.Managers;
 using SuperheroBattle.DataAccessHandlers;
@@ -14,11 +15,9 @@ namespace SuperheroBattle.Client.Api.Controllers
     [ApiController]
     public class BattlesController : ControllerBase
     {
-        private SuperheroBattleContext _dbContext;
         private IBattleManager _battleManager;
-        public BattlesController(SuperheroBattleContext dbContext, IBattleManager battleManager)
+        public BattlesController(IBattleManager battleManager)
         {
-            _dbContext = dbContext;
             _battleManager = battleManager;
         }
 
@@ -26,9 +25,7 @@ namespace SuperheroBattle.Client.Api.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Superhero>> Get()
         {
-            return _dbContext.Superheroes
-                             .Include(s => s.SuperheroAbilities)
-                             .ThenInclude(sa => sa.Ability).ToList();
+            return _battleManager.Get();
         }
 
         // GET api/values/5
@@ -41,54 +38,13 @@ namespace SuperheroBattle.Client.Api.Controllers
         [HttpPost("seed")]
         public ActionResult<string> SeedInitialEntities()
         {
-            try
-            {
-                SuperheroBattleInitializer.SeedData(_dbContext);
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
-
-            return "Success";
+            return _battleManager.Seed();
         }
 
         [HttpPost("fight")]
-        public async Task<ActionResult<Battle>> Fight([FromBody]Battle battle)
+        public ActionResult<Battle> Fight([FromBody]Battle battle)
         {
-            var superheroes =
-                await _dbContext.Superheroes.Where(s => (s.SuperheroID == battle.AttackerID) ||
-                                                        (s.SuperheroID == battle.DefenderID))
-                                            .Include(s => s.SuperheroAbilities)
-                                            .ThenInclude(sa => sa.Ability)
-                                            .ToListAsync();
-
-            int firstSuperheroScore = superheroes[0].SuperheroAbilities.Sum(a => a.Ability.StrengthLevel) + superheroes[0].AbilityModifier;
-            int secondSuperheroScore;
-            if (superheroes.Count > 1)
-            {
-                 secondSuperheroScore = superheroes[1].SuperheroAbilities.Sum(a => a.Ability.StrengthLevel) + superheroes[1].AbilityModifier;
-            }
-            else
-            {
-                secondSuperheroScore = firstSuperheroScore;
-            }
-
-            if (firstSuperheroScore > secondSuperheroScore)
-            {
-                battle.WinnerID = superheroes[0].SuperheroID;
-            }
-            else if (firstSuperheroScore < secondSuperheroScore)
-            {
-                battle.WinnerID = superheroes[1].SuperheroID;
-            }
-            else
-            {
-                // Returning null indicates a draw.
-                battle.WinnerID = null;
-            }
-
-            return battle;
+            return Ok(_battleManager.Fight(battle));
         }
 
         // PUT api/values/5

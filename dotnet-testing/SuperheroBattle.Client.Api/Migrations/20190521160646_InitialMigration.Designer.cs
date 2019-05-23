@@ -5,11 +5,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using SuperheroBattle.BusinessLogic.Engines;
 using SuperheroBattle.DataAccessHandlers;
 
 namespace SuperheroBattle.Client.Api.Migrations
 {
-    [DbContext(typeof(SuperheroBattleContext))]
+    [DbContext(typeof(BattleManager))]
     [Migration("20190521160646_InitialMigration")]
     partial class InitialMigration
     {

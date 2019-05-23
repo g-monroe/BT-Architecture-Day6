@@ -11,8 +11,8 @@ using SuperheroBattle.DataAccessHandlers;
 namespace SuperheroBattle.Client.Api.Migrations
 {
     [DbContext(typeof(BattleEngine))]
-    [Migration("20190522121403_AddAbilityLevelMigration")]
-    partial class AddAbilityLevelMigration
+    [Migration("20190523142130_IntialMigration")]
+    partial class IntialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

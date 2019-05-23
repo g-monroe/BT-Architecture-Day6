@@ -12,8 +12,12 @@ interface IAppState {
   defender?: ISuperhero;
   attacker?: ISuperhero;
   result?: string;
+  battleSummary?: IBattleSummary;
 }
-
+interface IBattleSummary{
+  attacker: string;
+  defender: string;
+}
 interface IAppProps {
 }
 
@@ -115,7 +119,12 @@ class App extends React.Component<IAppProps, IAppState> {
 
         {
           this.state.result &&
+
+          <> <Row>
+          <Col span={12}>
           <Title level={1}>{this.state.result}</Title>
+          <Title level={2} data-testid='battle-result-summary'>{this.state.battleSummary}</Title>
+          </Col></Row></>
         }
       </div>
     )

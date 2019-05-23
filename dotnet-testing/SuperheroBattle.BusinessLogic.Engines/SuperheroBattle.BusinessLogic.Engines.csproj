@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <RootNamespace>SuperheroBattle.BusinessLogic.Managers</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,9 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SuperheroBattle.BusinessLogic.Engines\SuperheroBattle.BusinessLogic.Engines.csproj" />
     <ProjectReference Include="..\SuperheroBattle.Core\SuperheroBattle.Core.csproj" />
-    <ProjectReference Include="..\SuperheroBattle.DataAccessHandlers\SuperheroBattle.DataAccessHandlers.csproj" />
   </ItemGroup>
 
   <ItemGroup>
