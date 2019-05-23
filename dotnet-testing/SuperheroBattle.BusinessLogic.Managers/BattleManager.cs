@@ -1,6 +1,5 @@
 ﻿using SuperheroBattle.Core.Entities;
 using SuperheroBattle.Core.Managers;
-using SuperheroBattle.DataAccessHandlers;
 using SuperheroBattle.DataAccessHandlers.Handlers;
 using System;
 using System.Collections.Generic;
